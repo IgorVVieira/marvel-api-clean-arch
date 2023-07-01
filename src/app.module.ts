@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { FavoriteHeroesModule } from './favorite-heroes/favorite-heroes.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { FavoriteHeroSchema } from './@core/infra/db/favorite-hero.schema';
@@ -18,7 +16,5 @@ import { join } from 'path';
       entities: [FavoriteHeroSchema],
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
