@@ -13,5 +13,8 @@ export const FavoriteHeroSchema = new EntitySchema({
       type: 'int',
       unique: true,
     },
+    hero: {
+      type: 'simple-json',
+    },
   },
 });

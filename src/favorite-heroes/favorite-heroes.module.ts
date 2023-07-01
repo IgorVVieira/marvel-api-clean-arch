@@ -11,12 +11,18 @@ import { CreateFavoriteHeroUseCase } from 'src/@core/application/create-favorite
 import { FavoriteHeroRepositoryInterface } from 'src/@core/domain/repositories/favorite-hero.repository';
 import { DeleteFavoriteHeroUseCase } from 'src/@core/application/delete-favorite-hero.use-case';
 import { ListAllFavoriteHeroUseCase } from 'src/@core/application/list-all-favorite-hero.use-case';
+import { MarvelRepositoryInterface } from 'src/@core/domain/repositories/marvel.repository';
+import { MarvelApi } from '../@core/infra/http/marvel-api';
 
 @Module({
   imports: [TypeOrmModule.forFeature([FavoriteHeroSchema])],
   controllers: [FavoriteHeroesController],
   providers: [
     FavoriteHeroesService,
+    {
+      provide: MarvelApi,
+      useClass: MarvelApi,
+    },
     {
       provide: FavoriteHeroRepository,
       useFactory: (dataSource: DataSource) => {
@@ -28,10 +34,13 @@ import { ListAllFavoriteHeroUseCase } from 'src/@core/application/list-all-favor
     },
     {
       provide: CreateFavoriteHeroUseCase,
-      useFactory: (repository: FavoriteHeroRepositoryInterface) => {
-        return new CreateFavoriteHeroUseCase(repository);
+      useFactory: (
+        repository: FavoriteHeroRepositoryInterface,
+        marvelRepository: MarvelRepositoryInterface,
+      ) => {
+        return new CreateFavoriteHeroUseCase(repository, marvelRepository);
       },
-      inject: [FavoriteHeroRepository],
+      inject: [FavoriteHeroRepository, MarvelApi],
     },
     {
       provide: DeleteFavoriteHeroUseCase,

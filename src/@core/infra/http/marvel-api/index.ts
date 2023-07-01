@@ -1,14 +1,19 @@
-import axios from 'axios';
 import { MarvelRepositoryInterface } from '../../../domain/repositories/marvel.repository';
+import { api } from './api';
 
 export class MarvelApi implements MarvelRepositoryInterface {
-  async getHeroes(): Promise<any> {
-    const { data } = await axios.get(process.env.MARVEL_API_URL, {
+  async getHeroes(name: string): Promise<any> {
+    const { data } = await api.get('characters', {
       params: {
-        apikey: process.env.MARVEL_PRIVATE_KEY,
+        nameStartsWith: name,
       },
     });
 
     return data.data.results;
+  }
+
+  async findOne(id: number): Promise<any> {
+    const { data } = await api.get(`characters/${id}`);
+    return data.data.results[0];
   }
 }

@@ -1,3 +1,4 @@
 export interface MarvelRepositoryInterface {
-  getHeroes(): Promise<any>;
+  getHeroes(name: string): Promise<any>;
+  findOne(id: number): Promise<any>;
 }

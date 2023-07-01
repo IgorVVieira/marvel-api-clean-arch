@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { FavoriteHeroSchema } from './@core/infra/db/favorite-hero.schema';
 
 import { join } from 'path';
+import { HeroesModule } from './heroes/heroes.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { join } from 'path';
       synchronize: true,
       entities: [FavoriteHeroSchema],
     }),
+    HeroesModule,
   ],
 })
 export class AppModule {}

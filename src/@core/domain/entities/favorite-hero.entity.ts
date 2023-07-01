@@ -12,10 +12,6 @@ export class FavoriteHero {
     this.hero = hero;
   }
 
-  getHero(): Hero {
-    return this.hero;
-  }
-
   static create(heroId: number, hero?: Hero): FavoriteHero {
     return new FavoriteHero(uuid(), heroId, hero);
   }
@@ -24,6 +20,7 @@ export class FavoriteHero {
     return {
       id: this.id,
       heroId: this.heroId,
+      hero: this.hero,
     };
   }
 }
