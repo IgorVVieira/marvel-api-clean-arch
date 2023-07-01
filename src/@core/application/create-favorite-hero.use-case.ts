@@ -13,15 +13,20 @@ type CreateFavoriteHeroOutput = {
 };
 
 export class CreateFavoriteHeroUseCase {
-  constructor(
-    private readonly favoriteHeroRepository: FavoriteHeroRepositoryInterface,
-  ) {}
+  constructor(private readonly repository: FavoriteHeroRepositoryInterface) {}
 
   async execute(
     input: CreateFavoriteHeroProps,
   ): Promise<CreateFavoriteHeroOutput> {
+    const favoriteHeroExists = await this.repository.favoriteHeroExists(
+      input.heroId,
+    );
+    if (favoriteHeroExists) {
+      throw new Error('Hero already exists');
+    }
+
     const favoriteHero = FavoriteHero.create(input.heroId, input.hero);
-    await this.favoriteHeroRepository.insert(favoriteHero);
+    await this.repository.insert(favoriteHero);
 
     return favoriteHero.toJson();
   }

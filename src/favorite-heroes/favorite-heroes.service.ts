@@ -20,7 +20,7 @@ export class FavoriteHeroesService {
     return this.listAllFavoriteHeroUseCase.execute();
   }
 
-  remove(id: string) {
+  remove(id: number) {
     return this.deleteFavoriteHeroUseCase.execute(id);
   }
 }

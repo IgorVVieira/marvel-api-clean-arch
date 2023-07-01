@@ -18,6 +18,6 @@ export class FavoriteHeroesController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.favoriteHeroesService.remove(id);
+    return this.favoriteHeroesService.remove(+id);
   }
 }

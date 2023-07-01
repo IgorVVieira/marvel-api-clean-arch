@@ -5,16 +5,21 @@ import { FavoriteHeroRepositoryInterface } from '../../domain/repositories/favor
 export class FavoriteHeroRepository implements FavoriteHeroRepositoryInterface {
   constructor(private readonly repository: Repository<FavoriteHero>) {}
 
+  async findAll(): Promise<FavoriteHero[]> {
+    return await this.repository.find();
+  }
+
+  async favoriteHeroExists(heroId: number): Promise<boolean> {
+    const favoritehero = await this.repository.findOneBy({ heroId });
+    return !!favoritehero;
+  }
+
   async insert(favoriteHero: FavoriteHero): Promise<FavoriteHero> {
     return await this.repository.save(favoriteHero);
   }
 
-  async delete(favoriteHeroId: string): Promise<boolean> {
-    const result = await this.repository.delete(favoriteHeroId);
+  async delete(heroId: number): Promise<boolean> {
+    const result = await this.repository.delete({ heroId });
     return result.affected === 1;
-  }
-
-  async findAll(): Promise<FavoriteHero[]> {
-    return await this.repository.find();
   }
 }
