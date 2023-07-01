@@ -1,9 +1,9 @@
 import { FavoriteHeroRepositoryInterface } from '../domain/repositories/favorite-hero.repository';
 
-interface FavoriteHeroOutput {
+type FavoriteHeroOutput = {
   id: string;
   heroId: number;
-}
+};
 
 export class ListAllFavoriteHeroUseCase {
   constructor(

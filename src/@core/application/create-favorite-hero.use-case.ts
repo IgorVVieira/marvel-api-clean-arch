@@ -2,15 +2,15 @@ import { FavoriteHero } from '../domain/entities/favorite-hero.entity';
 import { FavoriteHeroRepositoryInterface } from '../domain/repositories/favorite-hero.repository';
 import { Hero } from '../domain/entities/hero.entity';
 
-interface CreateFavoriteHeroProps {
+type CreateFavoriteHeroProps = {
   heroId: number;
   hero?: Hero;
-}
+};
 
-interface CreateFavoriteRouteOutput {
+type CreateFavoriteHeroOutput = {
   id: string;
   heroId: number;
-}
+};
 
 export class CreateFavoriteHeroUseCase {
   constructor(
@@ -19,7 +19,7 @@ export class CreateFavoriteHeroUseCase {
 
   async execute(
     input: CreateFavoriteHeroProps,
-  ): Promise<CreateFavoriteRouteOutput> {
+  ): Promise<CreateFavoriteHeroOutput> {
     const favoriteHero = FavoriteHero.create(input.heroId, input.hero);
     await this.favoriteHeroRepository.insert(favoriteHero);
 

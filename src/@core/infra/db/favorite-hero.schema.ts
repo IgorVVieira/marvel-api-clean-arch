@@ -13,13 +13,5 @@ export const FavoriteHeroSchema = new EntitySchema({
       type: 'int',
       unique: true,
     },
-    created_at: {
-      type: 'timestamp',
-      default: () => 'CURRENT_TIMESTAMP',
-    },
-    updated_at: {
-      type: 'timestamp',
-      default: () => 'CURRENT_TIMESTAMP',
-    },
   },
 });
