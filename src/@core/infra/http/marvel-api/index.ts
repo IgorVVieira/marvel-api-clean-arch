@@ -13,7 +13,11 @@ export class MarvelApi implements MarvelRepositoryInterface {
   }
 
   async findOne(id: number): Promise<any> {
-    const { data } = await api.get(`characters/${id}`);
-    return data.data.results[0];
+    try {
+      const { data } = await api.get(`characters/${id}`);
+      return data.data.results[0];
+    } catch (error) {
+      throw new Error('Hero not found');
+    }
   }
 }
