@@ -4,13 +4,13 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs_on: ubunto-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Verify code
         uses: actions/checkout@v2
 
-      - name: Config Node
+      - name: Config Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 16
