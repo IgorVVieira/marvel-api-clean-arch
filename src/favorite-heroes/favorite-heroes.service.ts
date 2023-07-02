@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateFavoriteHeroDto } from './dto/create-favorite-hero.dto';
 import { CreateFavoriteHeroUseCase } from '../@core/application/create-favorite-hero.use-case';
 import { DeleteFavoriteHeroUseCase } from '../@core/application/delete-favorite-hero.use-case';
-import { ListAllFavoriteHeroUseCase } from 'src/@core/application/list-all-favorite-hero.use-case';
+import { ListAllFavoriteHeroUseCase } from '../@core/application/list-all-favorite-hero.use-case';
 
 @Injectable()
 export class FavoriteHeroesService {
@@ -13,7 +13,13 @@ export class FavoriteHeroesService {
   ) {}
 
   async create(createFavoriteHeroDto: CreateFavoriteHeroDto) {
-    return this.createFavoriteHeroUseCase.execute(createFavoriteHeroDto);
+    try {
+      return this.createFavoriteHeroUseCase.execute(createFavoriteHeroDto);
+    } catch (error) {
+      if (error.message === 'Hero not found') {
+        throw new NotFoundException('Hero not found');
+      }
+    }
   }
 
   async findAll() {
@@ -21,6 +27,12 @@ export class FavoriteHeroesService {
   }
 
   remove(id: number) {
-    return this.deleteFavoriteHeroUseCase.execute(id);
+    try {
+      return this.deleteFavoriteHeroUseCase.execute(id);
+    } catch (error) {
+      if (error.message === 'Favorite hero not found') {
+        throw new NotFoundException('Favorite hero not found');
+      }
+    }
   }
 }

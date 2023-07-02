@@ -5,3 +5,4 @@
 Criar documentacao swagger
 Criar testes unitários e de integracao
 Criar container docker
+Hospedar API

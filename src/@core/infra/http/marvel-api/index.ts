@@ -3,13 +3,17 @@ import { api } from './api';
 
 export class MarvelApi implements MarvelRepositoryInterface {
   async getHeroes(name: string): Promise<any> {
-    const { data } = await api.get('characters', {
-      params: {
-        nameStartsWith: name,
-      },
-    });
+    try {
+      const { data } = await api.get('characters', {
+        params: {
+          nameStartsWith: name,
+        },
+      });
 
-    return data.data.results;
+      return data.data.results;
+    } catch (error) {
+      throw new Error('Heroes not found');
+    }
   }
 
   async findOne(id: number): Promise<any> {
