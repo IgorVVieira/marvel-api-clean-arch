@@ -2,8 +2,6 @@ import { Module } from '@nestjs/common';
 import { FavoriteHeroesModule } from './favorite-heroes/favorite-heroes.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { FavoriteHeroSchema } from './@core/infra/db/favorite-hero.schema';
-
-import { join } from 'path';
 import { HeroesModule } from './heroes/heroes.module';
 
 @Module({
@@ -11,8 +9,7 @@ import { HeroesModule } from './heroes/heroes.module';
     FavoriteHeroesModule,
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: join(__dirname, '..', 'database.sqlite'),
-      // database: ':memory:',
+      database: ':memory:',
       synchronize: true,
       entities: [FavoriteHeroSchema],
     }),
