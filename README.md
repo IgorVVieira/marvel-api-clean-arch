@@ -7,3 +7,5 @@ Criar testes unitários e de integracao
 Criar container docker -> Feito
 Hospedar API
 -> feito https://test-fpass.onrender.com/api
+
+-> Pipeline para rodar testes unitãrios ao subir cõdigo para master

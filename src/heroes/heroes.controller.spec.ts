@@ -1,20 +1,51 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { HeroesController } from './heroes.controller';
 import { HeroesService } from './heroes.service';
 
+type MockHeroesService = Partial<Record<keyof HeroesService, jest.Mock>>;
+const mockHeroesService = () =>
+  ({
+    findAll: jest.fn(),
+  } as MockHeroesService);
+
 describe('HeroesController', () => {
   let controller: HeroesController;
+  let heroesService: MockHeroesService;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      controllers: [HeroesController],
-      providers: [HeroesService],
-    }).compile();
+  beforeEach(() => {
+    heroesService = mockHeroesService();
 
-    controller = module.get<HeroesController>(HeroesController);
+    controller = new HeroesController(heroesService as any as HeroesService);
   });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
+  describe('findAll', () => {
+    test('should list all heroes', async () => {
+      const heroes = [
+        {
+          id: 1,
+          name: 'Spider',
+          description: 'any_description',
+        },
+      ];
+
+      heroesService.findAll.mockResolvedValue(heroes);
+
+      await controller.findAll('Spider');
+      expect(heroesService.findAll).toHaveBeenCalled();
+    });
+
+    test('should list all heroes with empty name', async () => {
+      const heroes = [
+        {
+          id: 1,
+          name: 'Spider',
+          description: 'any_description',
+        },
+      ];
+
+      heroesService.findAll.mockResolvedValue(heroes);
+
+      await controller.findAll('');
+      expect(heroesService.findAll).toHaveBeenCalled();
+    });
   });
 });
