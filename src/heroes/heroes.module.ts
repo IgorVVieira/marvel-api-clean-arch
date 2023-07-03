@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { HeroesService } from './heroes.service';
 import { HeroesController } from './heroes.controller';
 import { MarvelApi } from '../@core/infra/http/marvel-api';
-import { ListHeroesUseCase } from 'src/@core/application/list-heroes.use-case';
-import { MarvelRepositoryInterface } from 'src/@core/domain/repositories/marvel.repository';
+import { ListHeroesUseCase } from '../@core/application/list-heroes.use-case';
+import { MarvelRepositoryInterface } from '../@core/domain/repositories/marvel.repository';
 
 @Module({
   controllers: [HeroesController],

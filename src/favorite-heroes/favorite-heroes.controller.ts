@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  HttpStatus,
+  HttpCode,
+} from '@nestjs/common';
 import { FavoriteHeroesService } from './favorite-heroes.service';
 import { CreateFavoriteHeroDto } from './dto/create-favorite-hero.dto';
 import { ApiTags } from '@nestjs/swagger';
@@ -19,6 +28,7 @@ export class FavoriteHeroesController {
   }
 
   @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
   remove(@Param('id') id: string) {
     return this.favoriteHeroesService.remove(+id);
   }

@@ -5,13 +5,13 @@ import { TypeOrmModule, getDataSourceToken } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 
 import { FavoriteHeroSchema } from '../@core/infra/db/favorite-hero.schema';
-import { FavoriteHeroRepository } from 'src/@core/infra/db/favorite-hero.repository';
+import { FavoriteHeroRepository } from '../@core/infra/db/favorite-hero.repository';
 import { FavoriteHero } from '../@core/domain/entities/favorite-hero.entity';
-import { CreateFavoriteHeroUseCase } from 'src/@core/application/create-favorite-hero.use-case';
-import { FavoriteHeroRepositoryInterface } from 'src/@core/domain/repositories/favorite-hero.repository';
-import { DeleteFavoriteHeroUseCase } from 'src/@core/application/delete-favorite-hero.use-case';
-import { ListAllFavoriteHeroUseCase } from 'src/@core/application/list-all-favorite-hero.use-case';
-import { MarvelRepositoryInterface } from 'src/@core/domain/repositories/marvel.repository';
+import { CreateFavoriteHeroUseCase } from '../@core/application/create-favorite-hero.use-case';
+import { FavoriteHeroRepositoryInterface } from '../@core/domain/repositories/favorite-hero.repository';
+import { DeleteFavoriteHeroUseCase } from '../@core/application/delete-favorite-hero.use-case';
+import { ListAllFavoriteHeroUseCase } from '../@core/application/list-all-favorite-hero.use-case';
+import { MarvelRepositoryInterface } from '../@core/domain/repositories/marvel.repository';
 import { MarvelApi } from '../@core/infra/http/marvel-api';
 
 @Module({

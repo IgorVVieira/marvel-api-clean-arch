@@ -5,9 +5,9 @@ import { ListHeroesUseCase } from '../@core/application/list-heroes.use-case';
 export class HeroesService {
   constructor(private readonly listHeroesUseCase: ListHeroesUseCase) {}
 
-  async findAll(name: string) {
+  async findAll(name?: string, limit?: number) {
     try {
-      return await this.listHeroesUseCase.execute(name);
+      return await this.listHeroesUseCase.execute(name, limit);
     } catch (error) {
       if (error.message === 'Heroes not found') {
         throw new NotFoundException('Heroes not found');

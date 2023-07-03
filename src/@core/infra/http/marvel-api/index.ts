@@ -2,11 +2,12 @@ import { MarvelRepositoryInterface } from '../../../domain/repositories/marvel.r
 import { api } from './api';
 
 export class MarvelApi implements MarvelRepositoryInterface {
-  async getHeroes(name: string): Promise<any> {
+  async getHeroes(name?: string, limit?: number): Promise<any> {
     try {
       const { data } = await api.get('characters', {
         params: {
           nameStartsWith: name,
+          limit,
         },
       });
 

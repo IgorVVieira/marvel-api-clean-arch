@@ -4,7 +4,7 @@ import { MarvelRepositoryInterface } from '../domain/repositories/marvel.reposit
 export class ListHeroesUseCase {
   constructor(private readonly marvelRepository: MarvelRepositoryInterface) {}
 
-  async execute(name: string, limit?: number): Promise<Hero[]> {
+  async execute(name?: string, limit?: number): Promise<Hero[]> {
     try {
       const heroes = await this.marvelRepository.getHeroes(name, limit);
       return heroes.map(
