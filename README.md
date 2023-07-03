@@ -99,6 +99,6 @@ Além dos requisitos mencionados no desafio, decidi implementar algumas regras d
 
 Todas essas funcionalidades adicionais, além dos requisitos obrigatórios, foram implementadas e estão cobertas por testes de unidade e integração.
 
-## 😁Consideracoes finais
+## 😁Considerações finais
 
 Foi extremamente gratificante participar desse desafio, pois pude aplicar conceitos fundamentais da arquitetura limpa e do SOLID. Além disso, tive a oportunidade de integrar a API da Marvel, realizar testes de unidade e integração para garantir a qualidade e consistência do produto. Através desse projeto, adquiri conhecimentos valiosos e pude praticar habilidades essenciais. Mesmo sendo um projeto simples, estou satisfeito em demonstrar meu comprometimento com a entrega. Agradeço pela oportunidade! Estou à disposição caso haja alguma dúvida.
