@@ -4,7 +4,7 @@
 
 Criar documentacao swagger -> Feito
 Criar testes unitários -> feito
-Criar testes de integracao -> pendente
+Criar testes de integracao -> Testes e2e rodando com banco sqlite local
 Criar container docker -> Feito
 Hospedar API
 -> feito https://test-fpass.onrender.com/api
