@@ -20,10 +20,6 @@ describe('ListAllFavoriteHeroUseCase', () => {
     );
   });
 
-  it('should be defined', () => {
-    expect(true).toBe(true);
-  });
-
   it('should list all favorite heroes', async () => {
     const favoriteHeroes = [
       {

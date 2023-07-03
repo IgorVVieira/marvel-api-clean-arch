@@ -47,6 +47,9 @@ export class CreateFavoriteHeroUseCase {
 
   private async getHero(heroId: number): Promise<HeroOutput> {
     const hero = await this.marvelRepository.findOne(heroId);
+    if (!hero) {
+      throw new Error('Hero not found');
+    }
     return new Hero(hero.id, hero.name, hero.description);
   }
 }

@@ -34,10 +34,6 @@ describe('CreateFavoriteHeroUseCase', () => {
     );
   });
 
-  it('should be defined', () => {
-    expect(true).toBe(true);
-  });
-
   it('should create a favorite hero', async () => {
     const heroId = 1;
     const hero = {
@@ -75,5 +71,16 @@ describe('CreateFavoriteHeroUseCase', () => {
     await expect(
       createFavoriteHeroUseCase.execute({ heroId }),
     ).rejects.toThrowError('Hero already exists');
+  });
+
+  it('should not create a favorite hero if hero not exists', async () => {
+    const heroId = 1;
+
+    repository.favoriteHeroExists.mockResolvedValue(false);
+    marvelRepository.findOne.mockResolvedValue(undefined);
+
+    await expect(
+      createFavoriteHeroUseCase.execute({ heroId }),
+    ).rejects.toThrowError('Hero not found');
   });
 });

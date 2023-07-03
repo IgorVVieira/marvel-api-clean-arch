@@ -21,10 +21,6 @@ describe('DeleteFavoriteHeroUseCase', () => {
     );
   });
 
-  it('should be defined', () => {
-    expect(true).toBe(true);
-  });
-
   it('should delete a favorite hero', async () => {
     const favoriteHeroId = 1;
 

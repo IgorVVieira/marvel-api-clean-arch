@@ -20,10 +20,6 @@ describe('ListHeroesUseCase', () => {
     );
   });
 
-  it('should be defined', () => {
-    expect(true).toBe(true);
-  });
-
   it('should list all heroes', async () => {
     const heroes = [
       {

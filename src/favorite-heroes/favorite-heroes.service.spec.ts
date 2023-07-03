@@ -54,7 +54,6 @@ describe('FavoriteHeroesService', () => {
         description: 'any_description',
       };
 
-      // createFavoriteHeroUseCase = createFavoriteHeroUseCaseMock();
       createFavoriteHeroUseCase.execute.mockResolvedValue(hero);
 
       const favoriteHero = await service.create({ heroId });
@@ -70,6 +69,18 @@ describe('FavoriteHeroesService', () => {
 
       await expect(service.create({ heroId })).rejects.toThrow(
         'Favorite hero already exists',
+      );
+    });
+
+    test('should not create a favorite hero if it does not exist in Marvel API', async () => {
+      const heroId = 1;
+
+      createFavoriteHeroUseCase.execute.mockRejectedValue(
+        new Error('Hero not found'),
+      );
+
+      await expect(service.create({ heroId })).rejects.toThrow(
+        'Hero not found',
       );
     });
   });
