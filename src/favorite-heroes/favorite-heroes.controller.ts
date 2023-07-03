@@ -1,7 +1,9 @@
 import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { FavoriteHeroesService } from './favorite-heroes.service';
 import { CreateFavoriteHeroDto } from './dto/create-favorite-hero.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('favorite-heroes')
 @Controller('favorite-heroes')
 export class FavoriteHeroesController {
   constructor(private readonly favoriteHeroesService: FavoriteHeroesService) {}

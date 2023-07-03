@@ -3,7 +3,8 @@
 -> Salva info do herói da marvel no banco
 
 Criar documentacao swagger
-Criar testes unitários e de integracao
+Criar testes unitários -> feito
+Criar testes de integracao -> pendente
 Criar container docker -> Feito
 Hospedar API
 -> feito https://test-fpass.onrender.com/api
