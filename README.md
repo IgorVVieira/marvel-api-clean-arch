@@ -32,7 +32,8 @@ Para rodar este projeto, precisa ter o node ou Docker instalado em sua máquina.
 
 3. Rode o projeto utilizando Docker Compose (Caso queira):
    ```bash
-     docker-compose up -d
+    docker build -t test_fpass_igorvvieira .
+    docker run --name test_fpass_igorvvieira -p 3000:3000 test_fpass_igorvvieira
    ```
 4. Rode Node local:
    ```bash
@@ -56,8 +57,7 @@ Por padrão, a cada push em qualquer uma das branches deste projeto, os testes u
 Para rodar os testes de forma manual usando Docker:
 
 ```bash
-docker-compose exec app bash
-npm run test
+docker exec -it test_fpass_igorvvieira npm run test
 ```
 
 Usando Node local
@@ -73,8 +73,7 @@ A aplicação possui dois controladores: [FavoriteHeroesController](./src//favor
 Para rodar os testes e2e usando Docker:
 
 ```bash
-docker-compose exec app bash
-npm run test:e2e
+docker exec -it test_fpass_igorvvieira npm run test:e2e
 ```
 
 Usando Node local:
