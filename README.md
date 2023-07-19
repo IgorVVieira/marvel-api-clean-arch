@@ -21,7 +21,7 @@ Para rodar este projeto, precisa ter o node ou Docker instalado em sua máquina.
 1. Clone o repositório em sua máquina:
 
    ```bash
-   https://github.com/IgorVVieira/test_fpass_igorvvieira.git
+   git clone https://github.com/IgorVVieira/test_fpass_igorvvieira.git
    ```
 
 2. Mude para o diretório do projeto:
