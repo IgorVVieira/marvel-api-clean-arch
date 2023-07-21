@@ -1,6 +1,4 @@
-# Fpass Test
-
-Esse projeto foi criado para o desafio da vaga de backend da empresa Fpass.
+# Marvel Api Clean Architecture
 
 ## 💻 Tencologias utilizadas
 
@@ -82,10 +80,14 @@ Usando Node local:
 npm run test:e2e
 ```
 
-## 🎉 Requisitos
+## 🎉 Requisitos funcionais
 
 Além dos requisitos mencionados no desafio, decidi implementar algumas regras de negócio, validações relevantes e melhorias, que incluem:
 
+- [x] Possível favoritar um herói da Marvel.
+- [x] Possível buscar herói por nome (completo ou parcial).
+- [x] Possível remover um herói dos favoritos.
+- [ ] Possível listar todos heróis favoritos.
 - [x] Ao salvar um herói como favorito, também é armazenado um objeto JSON simples contendo os dados essenciais do herói, como nome e descrição. Isso facilita a busca e compreensão dos dados posteriormente.
 - [x] Impedir a adição de um herói aos favoritos caso ele não exista na API da Marvel.
 - [x] Evitar que o mesmo herói seja adicionado como favorito duas vezes.
@@ -98,7 +100,3 @@ Além dos requisitos mencionados no desafio, decidi implementar algumas regras d
 - [x] Implementação de testes de integração.
 
 Todas essas funcionalidades adicionais, além dos requisitos obrigatórios, foram implementadas e estão cobertas por testes de unidade e integração.
-
-## 😁Considerações finais
-
-Foi extremamente gratificante participar desse desafio, pois pude aplicar conceitos fundamentais da arquitetura limpa e do SOLID. Além disso, tive a oportunidade de integrar a API da Marvel, realizar testes de unidade e integração para garantir a qualidade e consistência do produto. Através desse projeto, adquiri conhecimentos valiosos e pude praticar habilidades essenciais. Mesmo sendo um projeto simples, estou satisfeito em demonstrar meu comprometimento com a entrega. Agradeço pela oportunidade! Estou à disposição caso haja alguma dúvida.
