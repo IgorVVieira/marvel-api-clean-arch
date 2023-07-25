@@ -87,7 +87,7 @@ Além dos requisitos mencionados no desafio, decidi implementar algumas regras d
 - [x] Possível favoritar um herói da Marvel.
 - [x] Possível buscar herói por nome (completo ou parcial).
 - [x] Possível remover um herói dos favoritos.
-- [ ] Possível listar todos heróis favoritos.
+- [x] Possível listar todos heróis favoritos.
 - [x] Ao salvar um herói como favorito, também é armazenado um objeto JSON simples contendo os dados essenciais do herói, como nome e descrição. Isso facilita a busca e compreensão dos dados posteriormente.
 - [x] Impedir a adição de um herói aos favoritos caso ele não exista na API da Marvel.
 - [x] Evitar que o mesmo herói seja adicionado como favorito duas vezes.
