@@ -19,7 +19,7 @@ async function bootstrap() {
   );
 
   const config = new DocumentBuilder()
-    .setTitle('Fpass Test API')
+    .setTitle('Marvel API Clean Architecture')
     .setDescription('an API that consumes data from Marvel')
     .setVersion('1.0')
     .addTag('favorite-heroes')

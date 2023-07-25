@@ -4,7 +4,7 @@ import { Hero } from './hero.entity';
 export class FavoriteHero {
   private hero: Hero;
 
-  constructor(
+  private constructor(
     public readonly id: string,
     public readonly heroId: number,
     hero?: Hero,
