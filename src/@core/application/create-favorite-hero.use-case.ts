@@ -1,7 +1,8 @@
 import { FavoriteHero } from '../domain/entities/favorite-hero.entity';
-import { FavoriteHeroRepositoryInterface } from '../domain/repositories/favorite-hero.repository';
+import { IFavoriteHeroRepository } from '../domain/repositories/favorite-hero.repository';
 import { Hero } from '../domain/entities/hero.entity';
-import { MarvelRepositoryInterface } from '../domain/repositories/marvel.repository';
+import { IMarvelRepository } from '../domain/repositories/marvel.repository';
+import { NotFoundException } from '@nestjs/common';
 
 type CreateFavoriteHeroProps = {
   heroId: number;
@@ -21,16 +22,16 @@ type HeroOutput = {
 
 export class CreateFavoriteHeroUseCase {
   constructor(
-    private readonly repository: FavoriteHeroRepositoryInterface,
-    private readonly marvelRepository: MarvelRepositoryInterface,
-  ) {}
+    private readonly repository: IFavoriteHeroRepository,
+    private readonly marvelRepository: IMarvelRepository,
+  ) { }
 
   async execute(
     input: CreateFavoriteHeroProps,
   ): Promise<CreateFavoriteHeroOutput> {
     const favoriteHeroExists = await this.favoriteHeroExists(input.heroId);
     if (favoriteHeroExists) {
-      throw new Error('Hero already exists');
+      throw new NotFoundException('Hero already exists');
     }
 
     const hero = await this.getHero(input.heroId);
@@ -48,7 +49,7 @@ export class CreateFavoriteHeroUseCase {
   private async getHero(heroId: number): Promise<HeroOutput> {
     const hero = await this.marvelRepository.findOne(heroId);
     if (!hero) {
-      throw new Error('Hero not found');
+      throw new NotFoundException('Hero not found');
     }
     return new Hero(hero.id, hero.name, hero.description);
   }

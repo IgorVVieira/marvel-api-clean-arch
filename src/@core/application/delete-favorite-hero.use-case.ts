@@ -1,14 +1,15 @@
-import { FavoriteHeroRepositoryInterface } from '../domain/repositories/favorite-hero.repository';
+import { IFavoriteHeroRepository } from '../domain/repositories/favorite-hero.repository';
+import { NotFoundException } from '@nestjs/common';
 
 export class DeleteFavoriteHeroUseCase {
-  constructor(private readonly repository: FavoriteHeroRepositoryInterface) {}
+  constructor(private readonly repository: IFavoriteHeroRepository) { }
 
-  async execute(favoriteHeroId: number): Promise<boolean> {
+  public async execute(favoriteHeroId: number): Promise<boolean> {
     const favoriteHeroExists = await this.repository.favoriteHeroExists(
       favoriteHeroId,
     );
     if (!favoriteHeroExists) {
-      throw new Error('Favorite hero not found');
+      throw new NotFoundException('Favorite hero not found');
     }
     return await this.repository.delete(favoriteHeroId);
   }

@@ -8,10 +8,10 @@ import { FavoriteHeroSchema } from '../@core/infra/db/favorite-hero.schema';
 import { FavoriteHeroRepository } from '../@core/infra/db/favorite-hero.repository';
 import { FavoriteHero } from '../@core/domain/entities/favorite-hero.entity';
 import { CreateFavoriteHeroUseCase } from '../@core/application/create-favorite-hero.use-case';
-import { FavoriteHeroRepositoryInterface } from '../@core/domain/repositories/favorite-hero.repository';
+import { IFavoriteHeroRepository } from '../@core/domain/repositories/favorite-hero.repository';
 import { DeleteFavoriteHeroUseCase } from '../@core/application/delete-favorite-hero.use-case';
 import { ListAllFavoriteHeroUseCase } from '../@core/application/list-all-favorite-hero.use-case';
-import { MarvelRepositoryInterface } from '../@core/domain/repositories/marvel.repository';
+import { IMarvelRepository } from '../@core/domain/repositories/marvel.repository';
 import { MarvelApi } from '../@core/infra/http/marvel-api';
 
 @Module({
@@ -35,8 +35,8 @@ import { MarvelApi } from '../@core/infra/http/marvel-api';
     {
       provide: CreateFavoriteHeroUseCase,
       useFactory: (
-        repository: FavoriteHeroRepositoryInterface,
-        marvelRepository: MarvelRepositoryInterface,
+        repository: IFavoriteHeroRepository,
+        marvelRepository: IMarvelRepository,
       ) => {
         return new CreateFavoriteHeroUseCase(repository, marvelRepository);
       },
@@ -44,18 +44,18 @@ import { MarvelApi } from '../@core/infra/http/marvel-api';
     },
     {
       provide: DeleteFavoriteHeroUseCase,
-      useFactory: (repository: FavoriteHeroRepositoryInterface) => {
+      useFactory: (repository: IFavoriteHeroRepository) => {
         return new DeleteFavoriteHeroUseCase(repository);
       },
       inject: [FavoriteHeroRepository],
     },
     {
       provide: ListAllFavoriteHeroUseCase,
-      useFactory: (repository: FavoriteHeroRepositoryInterface) => {
+      useFactory: (repository: IFavoriteHeroRepository) => {
         return new ListAllFavoriteHeroUseCase(repository);
       },
       inject: [FavoriteHeroRepository],
     },
   ],
 })
-export class FavoriteHeroesModule {}
+export class FavoriteHeroesModule { }

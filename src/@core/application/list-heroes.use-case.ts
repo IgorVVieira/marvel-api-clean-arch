@@ -1,10 +1,10 @@
 import { Hero } from '../domain/entities/hero.entity';
-import { MarvelRepositoryInterface } from '../domain/repositories/marvel.repository';
+import { IMarvelRepository } from '../domain/repositories/marvel.repository';
 
 export class ListHeroesUseCase {
-  constructor(private readonly marvelRepository: MarvelRepositoryInterface) {}
+  public constructor(private readonly marvelRepository: IMarvelRepository) { }
 
-  async execute(name?: string, limit?: number): Promise<Hero[]> {
+  public async execute(name?: string, limit?: number): Promise<Hero[]> {
     try {
       const heroes = await this.marvelRepository.getHeroes(name, limit);
       return heroes.map(

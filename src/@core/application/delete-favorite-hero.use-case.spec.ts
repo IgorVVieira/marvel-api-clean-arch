@@ -1,14 +1,14 @@
-import { FavoriteHeroRepositoryInterface } from '../domain/repositories/favorite-hero.repository';
+import { IFavoriteHeroRepository } from '../domain/repositories/favorite-hero.repository';
 import { DeleteFavoriteHeroUseCase } from './delete-favorite-hero.use-case';
 
 type MockRepository = Partial<
-  Record<keyof FavoriteHeroRepositoryInterface, jest.Mock>
+  Record<keyof IFavoriteHeroRepository, jest.Mock>
 >;
 const repositoryMock = () =>
-  ({
-    delete: jest.fn(),
-    favoriteHeroExists: jest.fn(),
-  } as MockRepository);
+({
+  delete: jest.fn(),
+  favoriteHeroExists: jest.fn(),
+} as MockRepository);
 
 describe('DeleteFavoriteHeroUseCase', () => {
   let deleteFavoriteHeroUseCase: DeleteFavoriteHeroUseCase;
@@ -17,7 +17,7 @@ describe('DeleteFavoriteHeroUseCase', () => {
   beforeEach(() => {
     repository = repositoryMock();
     deleteFavoriteHeroUseCase = new DeleteFavoriteHeroUseCase(
-      repository as FavoriteHeroRepositoryInterface,
+      repository as IFavoriteHeroRepository,
     );
   });
 

@@ -1,6 +1,6 @@
 import { FavoriteHero } from '../entities/favorite-hero.entity';
 
-export interface FavoriteHeroRepositoryInterface {
+export interface IFavoriteHeroRepository {
   findAll(): Promise<FavoriteHero[]>;
   favoriteHeroExists(heroId: number): Promise<boolean>;
   insert(favoriteHero: FavoriteHero): Promise<FavoriteHero>;

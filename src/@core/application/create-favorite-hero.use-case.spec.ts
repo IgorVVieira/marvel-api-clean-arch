@@ -1,24 +1,24 @@
-import { FavoriteHeroRepositoryInterface } from '../domain/repositories/favorite-hero.repository';
-import { MarvelRepositoryInterface } from '../domain/repositories/marvel.repository';
+import { IFavoriteHeroRepository } from '../domain/repositories/favorite-hero.repository';
+import { IMarvelRepository } from '../domain/repositories/marvel.repository';
 import { CreateFavoriteHeroUseCase } from './create-favorite-hero.use-case';
 
 type MockRepository = Partial<
-  Record<keyof FavoriteHeroRepositoryInterface, jest.Mock>
+  Record<keyof IFavoriteHeroRepository, jest.Mock>
 >;
 const repositoryMock = () =>
-  ({
-    insert: jest.fn(),
-    favoriteHeroExists: jest.fn(),
-  } as MockRepository);
+({
+  insert: jest.fn(),
+  favoriteHeroExists: jest.fn(),
+} as MockRepository);
 
 type MockMarvelRepository = Partial<
-  Record<keyof MarvelRepositoryInterface, jest.Mock>
+  Record<keyof IMarvelRepository, jest.Mock>
 >;
 
 const marvelRepositoryMock = () =>
-  ({
-    findOne: jest.fn(),
-  } as MockMarvelRepository);
+({
+  findOne: jest.fn(),
+} as MockMarvelRepository);
 
 describe('CreateFavoriteHeroUseCase', () => {
   let createFavoriteHeroUseCase: CreateFavoriteHeroUseCase;
@@ -29,8 +29,8 @@ describe('CreateFavoriteHeroUseCase', () => {
     repository = repositoryMock();
     marvelRepository = marvelRepositoryMock();
     createFavoriteHeroUseCase = new CreateFavoriteHeroUseCase(
-      repository as FavoriteHeroRepositoryInterface,
-      marvelRepository as MarvelRepositoryInterface,
+      repository as IFavoriteHeroRepository,
+      marvelRepository as IMarvelRepository,
     );
   });
 

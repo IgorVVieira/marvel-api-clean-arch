@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid';
 import { Hero } from './hero.entity';
 
 export class FavoriteHero {
-  private hero: Hero;
+  private readonly hero: Hero;
 
   private constructor(
     public readonly id: string,

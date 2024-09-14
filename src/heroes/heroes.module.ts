@@ -3,7 +3,7 @@ import { HeroesService } from './heroes.service';
 import { HeroesController } from './heroes.controller';
 import { MarvelApi } from '../@core/infra/http/marvel-api';
 import { ListHeroesUseCase } from '../@core/application/list-heroes.use-case';
-import { MarvelRepositoryInterface } from '../@core/domain/repositories/marvel.repository';
+import { IMarvelRepository } from '../@core/domain/repositories/marvel.repository';
 
 @Module({
   controllers: [HeroesController],
@@ -15,11 +15,11 @@ import { MarvelRepositoryInterface } from '../@core/domain/repositories/marvel.r
     },
     {
       provide: ListHeroesUseCase,
-      useFactory: (repository: MarvelRepositoryInterface) => {
+      useFactory: (repository: IMarvelRepository) => {
         return new ListHeroesUseCase(repository);
       },
       inject: [MarvelApi],
     },
   ],
 })
-export class HeroesModule {}
+export class HeroesModule { }

@@ -1,8 +1,8 @@
-import { MarvelRepositoryInterface } from '../../../domain/repositories/marvel.repository';
+import { IMarvelRepository } from '../../../domain/repositories/marvel.repository';
 import { api } from './api';
 
-export class MarvelApi implements MarvelRepositoryInterface {
-  async getHeroes(name?: string, limit?: number): Promise<any> {
+export class MarvelApi implements IMarvelRepository {
+  public async getHeroes(name?: string, limit?: number): Promise<any> {
     try {
       const { data } = await api.get('characters', {
         params: {
@@ -17,7 +17,7 @@ export class MarvelApi implements MarvelRepositoryInterface {
     }
   }
 
-  async findOne(id: number): Promise<any> {
+  public async findOne(id: number): Promise<any> {
     try {
       const { data } = await api.get(`characters/${id}`);
       return data.data.results[0];

@@ -1,13 +1,13 @@
-import { MarvelRepositoryInterface } from '../domain/repositories/marvel.repository';
+import { IMarvelRepository } from '../domain/repositories/marvel.repository';
 import { ListHeroesUseCase } from './list-heroes.use-case';
 
 type MockRepository = Partial<
-  Record<keyof MarvelRepositoryInterface, jest.Mock>
+  Record<keyof IMarvelRepository, jest.Mock>
 >;
 const repositoryMock = () =>
-  ({
-    getHeroes: jest.fn(),
-  } as MockRepository);
+({
+  getHeroes: jest.fn(),
+} as MockRepository);
 
 describe('ListHeroesUseCase', () => {
   let listHeroesUseCase: ListHeroesUseCase;
@@ -16,7 +16,7 @@ describe('ListHeroesUseCase', () => {
   beforeEach(() => {
     repository = repositoryMock();
     listHeroesUseCase = new ListHeroesUseCase(
-      repository as MarvelRepositoryInterface,
+      repository as IMarvelRepository,
     );
   });
 

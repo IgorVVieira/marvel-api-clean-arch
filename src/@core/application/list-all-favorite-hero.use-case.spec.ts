@@ -1,13 +1,13 @@
-import { FavoriteHeroRepositoryInterface } from '../domain/repositories/favorite-hero.repository';
+import { IFavoriteHeroRepository } from '../domain/repositories/favorite-hero.repository';
 import { ListAllFavoriteHeroUseCase } from './list-all-favorite-hero.use-case';
 
 type MockRepository = Partial<
-  Record<keyof FavoriteHeroRepositoryInterface, jest.Mock>
+  Record<keyof IFavoriteHeroRepository, jest.Mock>
 >;
 const repositoryMock = () =>
-  ({
-    findAll: jest.fn(),
-  } as MockRepository);
+({
+  findAll: jest.fn(),
+} as MockRepository);
 
 describe('ListAllFavoriteHeroUseCase', () => {
   let listAllFavoriteHeroUseCase: ListAllFavoriteHeroUseCase;
@@ -16,7 +16,7 @@ describe('ListAllFavoriteHeroUseCase', () => {
   beforeEach(() => {
     repository = repositoryMock();
     listAllFavoriteHeroUseCase = new ListAllFavoriteHeroUseCase(
-      repository as FavoriteHeroRepositoryInterface,
+      repository as IFavoriteHeroRepository,
     );
   });
 
